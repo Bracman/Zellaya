@@ -1,0 +1,304 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+/* Кнопка гамбургера */
+.mobile-header {
+    display: none;
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1001;
+}
+
+.hamburger {
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Мобильная панель (Overlay) */
+.mobile-sidebar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* Панель теперь занимает всю ширину экрана */
+    height: 100%; /* Панель занимает всю высоту экрана */
+    background-color: rgba(44, 62, 80, 0.95);
+    z-index: 1000;
+    padding-top: 50px;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.mobile-sidebar.active {
+    display: flex;
+}
+
+.mobile-sidebar .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 36px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Стили для кнопок в мобильной панели */
+.mobile-sidebar button {
+    display: block;
+    width: 100%; /* Кнопки теперь занимают всю ширину экрана */
+    margin: 10px 0;
+    padding: 12px;
+    background-color: #34495e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.mobile-sidebar button.exit {
+    background-color: #e74c3c;
+}
+
+/* Основной контент */
+.content {
+    flex-grow: 1;
+    background-color: #7f8c8d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    padding-left: 20px;
+    transition: margin-left 0.3s ease-in-out;
+    height: 100vh;
+}
+
+/* Стили для раздела заказов */
+.orders-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+.orders-container h2 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+.orders-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.orders-container ul li {
+    margin: 15px 0;
+}
+
+.orders-container ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #34495e;
+    transition: color 0.3s;
+}
+
+.orders-container ul li a:hover {
+    color: #e74c3c;
+}
+
+/* Мобильные стили */
+@media (max-width: 767px) {
+    .mobile-header {
+        display: flex;
+    }
+
+    .desktop-sidebar {
+        display: none;
+    }
+
+    /* Контент на мобильных устройствах */
+    .content {
+        margin-left: 0;  /* Контент будет занимать весь экран */
+    }
+
+    /* Панель навигации на мобильных устройствах */
+    .mobile-sidebar button {
+        width: 100%; /* Кнопки панелей навигации будут занимать всю ширину экрана */
+    }
+}
+
+/* ПК */
+@media (min-width: 768px) {
+    body {
+        flex-direction: row;
+    }
+
+    .desktop-sidebar {
+        display: block;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 200px;
+        background-color: #2c3e50;
+        padding: 20px 0;
+    }
+
+    .content {
+        margin-left: 200px;
+        min-height: 100vh;
+        width: calc(100% - 200px);
+    }
+
+    .desktop-sidebar button {
+        display: block;
+        width: 90%;
+        margin: 24px auto;
+        padding: 16px;
+        background-color: #34495e;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .desktop-sidebar button.exit {
+        background-color: #e74c3c;
+    }
+    .content {
+        background-color: #f5f7fa; /* светлый фон для карточек */
+        display: flex;
+        justify-content: center; /* по горизонтали */
+        align-items: center; /* по вертикали */
+        padding: 32px 20px;
+        min-height: 100vh; /* на всю высоту */
+    }
+
+    /* контейнер секции заказов */
+    .orders {
+        width: 100%;
+        max-width: 1000px; /* ширина блока */
+    }
+
+    .orders-box {
+        background: #fff;
+        border: 1px solid rgba(31,45,58,0.06);
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(31,45,58,0.08);
+        padding: 24px;
+    }
+
+    /* заголовок и подпись */
+    .orders-head h2 {
+        margin: 0 0 6px 0;
+        font-size: 28px;
+        line-height: 1.2;
+        color: #1f2d3a;
+        text-align: center;
+    }
+
+    .orders-head .muted {
+        margin: 0 0 20px 0;
+        color: #6b7b8a;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    /* сетка кнопок-действий */
+    .actions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 16px;
+    }
+
+    /* карточка-действие */
+    .action-tile {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            "icon title"
+            "icon desc";
+        align-items: center;
+        padding: 16px;
+        border-radius: 14px;
+        text-decoration: none;
+        background: #ffffff;
+        color: #1f2d3a;
+        border: 1px solid rgba(31,45,58,0.06);
+        box-shadow: 0 2px 8px rgba(31,45,58,0.08);
+        transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+
+        .action-tile:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(31,45,58,0.12);
+        }
+
+        .action-tile:active {
+            transform: translateY(0);
+            box-shadow: 0 6px 14px rgba(31,45,58,0.10);
+        }
+
+        .action-tile:focus {
+            outline: 2px solid #2c97de;
+            outline-offset: 2px;
+        }
+
+        /* элементы внутри карточки */
+        .action-tile .icon {
+            grid-area: icon;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 24px;
+            background: #eef3f7;
+            user-select: none;
+        }
+
+        .action-tile .title {
+            grid-area: title;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: .2px;
+        }
+
+        .action-tile .desc {
+            grid-area: desc;
+            color: #6b7b8a;
+            font-size: 13px;
+        }
+
+    /* совместимость с вашим фиксированным сайдбаром на ПК */
+    @media (min-width: 768px) {
+        .content {
+            margin-left: 200px; /* как у тебя для десктопа */
+            width: calc(100% - 200px);
+        }
+    }
+}

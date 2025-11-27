@@ -1,0 +1,141 @@
+﻿@model OrderCreateViewModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Создать заказ";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/create_order_style.css" />
+    <script src="~/js/order_script.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <!-- Мобильная шапка -->
+    <div class="mobile-header">
+        <button class="hamburger" id="hamburger">&#9776;</button>
+        <span class="header-title">Меню</span>
+    </div>
+
+    <!-- Мобильная боковая панель -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <div class="sidebar-content">
+            <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Заказы</button>
+            <button type="button" onclick="location.href='@Url.Action("Index", "KnowledgeBase")'">База знаний</button>
+            <button type="button" onclick="location.href='#'">Кладовая</button>
+            <button type="button" onclick="location.href='#'">Калькулятор</button>
+            <button type="button" onclick="location.href='#'">Настройки</button>
+            <button type="button" class="exit" onclick="location.href='@Url.Action("Logout", "Account")'">Выход</button>
+        </div>
+    </div>
+
+    <!-- Десктопный сайдбар -->
+    <div class="sidebar desktop-sidebar">
+        <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Заказы</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "KnowledgeBase")'">База знаний</button>
+        <button type="button" onclick="location.href='#'">Кладовая</button>
+        <button type="button" onclick="location.href='#'">Калькулятор</button>
+        <button type="button" onclick="location.href='#'">Настройки</button>
+        <button type="button" class="exit" onclick="location.href='@Url.Action("Logout", "Account")'">Выход</button>
+    </div>
+
+    <!-- Контент формы -->
+    <div class="content">
+        <form asp-action="Create" method="post" class="orders-box" style="max-width:700px; width:100%;">
+            @Html.AntiForgeryToken()
+
+            <header class="orders-head" style="margin-bottom:16px;">
+                <h2 style="margin:0;">Создать заказ</h2>
+                <p class="muted" style="margin:0;">Заполните поля и сохраните</p>
+            </header>
+
+            <div asp-validation-summary="ModelOnly" class="danger" style="margin-bottom:8px;"></div>
+
+            <div class="form-grid">
+                <!-- Номер заказа по центру -->
+                <label>Номер заказа</label>
+                <div class="order-number-display">
+                    @Model.OrderNumber
+                </div>
+
+                <!-- Дата создания и дата готовности на одном уровне -->
+                <div class="form-item">
+                    <label asp-for="CreatedDate">Дата создания</label>
+                    <input asp-for="CreatedDate" type="date" class="form-control" />
+                    <span asp-validation-for="CreatedDate" class="danger"></span>
+                </div>
+
+                <div class="form-item">
+                    <label asp-for="ReadyDate">Дата готовности</label>
+                    <input asp-for="ReadyDate" type="date" class="form-control" />
+                    <span asp-validation-for="ReadyDate" class="danger"></span>
+                </div>
+
+                <!-- Количество плат и компонентов на одном уровне -->
+                <div class="form-item">
+                    <label asp-for="BoardQuantity">Количество плат</label>
+                    <input asp-for="BoardQuantity" type="number" min="1" max="10" onchange="generateBoardFields()" class="form-control" />
+                    <span asp-validation-for="BoardQuantity" class="danger"></span>\
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="addNewBoardCheckbox" />
+                        <label for="addNewBoardCheckbox">Добавить новую плату</label>
+                    </div>
+                </div>
+
+                <div class="form-item">
+                    <label asp-for="ComponentQuantity">Количество компонентов</label>
+                    <input asp-for="ComponentQuantity" type="number" min="1" max="10" onchange="generateComponentFields()" class="form-control" />
+                    <span asp-validation-for="ComponentQuantity" class="danger"></span>
+                </div>
+            </div>
+
+            <div id="newBoardForm" class="hidden">
+                <h3>Добавление новой платы</h3>
+                <div class="form-item">
+                    <label>Название платы</label>
+                    <input type="text" id="newBoardName" placeholder="Введите название" />
+                </div>
+
+                <div class="form-item">
+                    <label>Код платы</label>
+                    <input type="text" id="newBoardCode" placeholder="Введите уникальный номер" />
+                </div>
+
+                <div class="form-item">
+                    <label>Спецификация платы(PDF/DOCX)</label>
+                    <input type="file" id="newBoardFile" accept=".pdf,.doc,.docx" />
+                </div>
+
+                <!-- Кнопка сохранить плату - появляется только при активации чекбокса -->
+                <button type="button" class="btn btn-small" id="saveNewBoardBtn">Сохранить плату</button>
+            </div>
+
+
+            <!-- Динамически добавляемые поля для выбора плат -->
+            <div id="boardFieldsContainer"></div>
+
+            <!-- Динамически добавляемые поля для выбора компонентов -->
+            <div id="componentFieldsContainer"></div>
+
+            <div class="actions">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+            </div>
+        </form>
+    </div>
+    <script>
+        var boardsData = @Html.Raw(Json.Serialize(Model.Boards));
+        var componentsData = @Html.Raw(Json.Serialize(Model.Components));
+    </script>
+
+    
+</body>
+</html>

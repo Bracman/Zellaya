@@ -1,0 +1,86 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Заказы";
+}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерфейс</title>
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+<body>
+    <div class="mobile-header">
+        <button class="hamburger" id="hamburger">&#9776;</button>
+        <span class="header-title">Меню</span>
+    </div>
+
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <div class="sidebar-content">
+            <button onclick="changeContent('orders')">Заказы</button>
+            <button onclick="changeContent('knowledgeBase')">База знаний</button>
+            <button onclick="changeContent('warehouse')">Кладовая</button>
+            <button onclick="changeContent('calculator')">Калькулятор</button>
+            <button onclick="changeContent('settings')">Настройки</button>
+            <button class="exit" onclick="changeContent('exit')">Выход</button>
+        </div>
+    </div>
+
+    <div class="sidebar desktop-sidebar">
+        <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Заказы</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "KnowledgeBase")'">База знаний</button>
+        <button onclick="changeContent('warehouse')">Кладовая</button>
+        <button onclick="changeContent('calculator')">Калькулятор</button>
+        <button onclick="changeContent('settings')">Настройки</button>
+        <button class="exit" onclick="changeContent('exit')">Выход</button>
+    </div>
+    <div class="content" id="mainContent">
+        <section id="ordersContent" class="orders">
+            <div class="orders-box">
+                <header class="orders-head">
+                    <h2>Выберите действие</h2>
+                    <p class="muted">Что делаем дальше?</p>
+                </header>
+
+                <nav class="actions-grid">
+                    <a asp-controller="Orders" asp-action="Create" class="action-tile" id="createOrderLink">
+                        <span class="icon">
+                            <img src="~/icons/doc_smale.svg" />
+                        </span>
+                        <span class="title">Создать заказ</span>
+                        <span class="desc">Новый заказ и параметры</span>
+                    </a>
+
+                    <a href="#" class="action-tile" id="showOrdersListLink">
+                        <span class="icon">
+                            <img src="~/icons/folder.svg" />
+                        </span>
+                        <span class="title">Посмотреть заказы</span>
+                        <span class="desc">Список и детали</span>
+                    </a>
+
+                    <a href="#" class="action-tile" id="showCreateRequestLink">
+                        <span class="icon">
+                            <img src="~/icons/doc_sad.svg" />
+                        </span>
+                        <span class="title">Создать запрос на доработку</span>
+                        <span class="desc">Описание задачи на правку</span>
+                    </a>
+
+                    <a href="#" class="action-tile" id="showRequestsListLink">
+                        <span class="icon">
+                            <img src="~/icons/docs.svg" width="50" height="50" />
+                        </span>
+                        <span class="title">Просмотр доработок</span>
+                        <span class="desc">Статусы и история</span>
+                    </a>
+                </nav>
+            </div>
+        </section>
+    </div>
+
+    <script src="~/js/script.js"></script>
+</body>
+</html>
