@@ -1,0 +1,76 @@
+﻿@model List<Orders>
+@{
+    Layout = null;
+    ViewData["Title"] = "Посмотреть заказы";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/list_orders.css"/>
+    <script src="~/js/order_script.js"></script>
+</head>
+<body>
+    <!-- Мобильная шапка -->
+    <div class="mobile-header">
+        <button class="hamburger" id="hamburger">&#9776;</button>
+        <span class="header-title">Меню</span>
+    </div>
+
+    <!-- Мобильная боковая панель -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <div class="sidebar-content">
+            <button type="button">Заказы</button>
+            <button type="button">База знаний</button>
+            <button type="button" onclick="location.href='#'">Кладовая</button>
+            <button type="button" onclick="location.href='#'">Калькулятор</button>
+            <button type="button" onclick="location.href='#'">Настройки</button>
+            <button type="button">Выход</button>
+        </div>
+    </div>
+
+    <!-- Десктопный сайдбар -->
+    <div class="sidebar desktop-sidebar">
+        <button type="button">Заказы</button>
+        <button type="button">База знаний</button>
+        <button type="button" onclick="location.href='#'">Кладовая</button>
+        <button type="button" onclick="location.href='#'">Калькулятор</button>
+        <button type="button" onclick="location.href='#'">Настройки</button>
+        <button type="button">Выход</button>
+    </div>
+
+    <div class="content">
+        <div class="table-container">
+            <h1>Список заказов</h1>
+
+            <table id="ordersTable">
+                <thead>
+                    <tr>
+                        <th data-sort="name">Имя заказа</th>
+                        <th data-sort="number">Номер заказа</th>
+                        <th data-sort="date">Дата заказа</th>
+                        <th data-sort="ready">Дата готовности</th>
+                        <th data-sort="qty">Кол-во</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersBody">
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>Заказ @order.id_order</td>
+                            <td>@order.num_order</td>
+                            <td>@order.CreatedDate.("dd.MM.yyyy")</td>
+                            <td>@order.ReadyDate.("dd.MM.yyyy")</td>
+                            <td>@order.count_board</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

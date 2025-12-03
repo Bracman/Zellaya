@@ -1,0 +1,59 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Home Page";
+}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерфейс</title>
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+<body>
+    <div class="mobile-header">
+        <button class="hamburger" id="hamburger">&#9776;</button>
+        <span class="header-title">Меню</span>
+    </div>
+
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <div class="sidebar-content">
+            <button onclick="changeContent('orders')">Заказы</button>
+            <button onclick="changeContent('knowledgeBase')">База знаний</button>
+            <button onclick="changeContent('warehouse')">Кладовая</button>
+            <button onclick="changeContent('calculator')">Калькулятор</button>
+            <button onclick="changeContent('settings')">Настройки</button>
+            <button class="exit" onclick="changeContent('exit')">Выход</button>
+        </div>
+    </div>
+
+    <div class="sidebar desktop-sidebar">
+        <button onclick="changeContent('orders')">Заказы</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "KnowledgeBase")'">База знаний</button>
+        <button onclick="changeContent('warehouse')">Кладовая</button>
+        <button onclick="changeContent('calculator')">Калькулятор</button>
+        <button onclick="changeContent('settings')">Настройки</button>
+        <button class="exit" onclick="changeContent('exit')">Выход</button>
+    </div>
+
+
+    <div class="content" id="mainContent">
+        <section id="ordersContent" class="section">
+            <h2>Выберите действие</h2>
+            <ul class="actions">
+               
+                <li><a asp-controller="Orders" asp-action="Create" class="link-action" id="createOrderLink">Создать заказ</a></li>
+
+                <li><a href="#" class="link-action" id="showOrdersListLink">Посмотреть заказы</a></li>
+
+                <li><a href="#" class="link-action" id="showCreateRequestLink">Создать запрос на доработку</a></li>
+
+                <li><a href="#" class="link-action" id="showRequestsListLink">Просмотр доработок</a></li>
+            </ul>
+        </section>
+    </div>   
+
+    <script src="~/js/script.js"></script>
+</body>
+</html>
