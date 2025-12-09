@@ -33,14 +33,13 @@
         </div>
     </div>
 
-    <!-- Десктопный сайдбар -->
     <div class="sidebar desktop-sidebar">
-        <button type="button">Заказы</button>
-        <button type="button">База знаний</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Заказы</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "KnowledgeBase")'">База знаний</button>
         <button type="button" onclick="location.href='#'">Кладовая</button>
         <button type="button" onclick="location.href='#'">Калькулятор</button>
         <button type="button" onclick="location.href='#'">Настройки</button>
-        <button type="button">Выход</button>
+        <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
     </div>
 
     <div class="content">
@@ -63,8 +62,8 @@
                         <tr>
                             <td>Заказ @order.id_order</td>
                             <td>@order.num_order</td>
-                            <td>@order.CreatedDate.("dd.MM.yyyy")</td>
-                            <td>@order.ReadyDate.("dd.MM.yyyy")</td>
+                            <td>@order.CreatedDate</td>
+                            <td>@order.ReadyDate</td>
                             <td>@order.count_board</td>
                         </tr>
                     }
