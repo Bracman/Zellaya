@@ -136,6 +136,7 @@ namespace Zellaya.Controllers
         [HttpGet]
         public IActionResult ListOrders()
         {
+            
             var orders = new List<Orders>();
 
             using (var connection = new MySqlConnection(_connectionString))
