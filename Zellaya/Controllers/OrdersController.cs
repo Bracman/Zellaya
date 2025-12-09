@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 using System.Threading.Tasks;
 using Zellaya.Data;
 using Zellaya.Models;
@@ -81,6 +82,7 @@ namespace Zellaya.Controllers
                 BoardQuantity = model.BoardQuantity
             };
 
+
             _db.Orders.Add(order);
             await _db.SaveChangesAsync();
 
@@ -127,9 +129,37 @@ namespace Zellaya.Controllers
             
         }
 
+       
+        private readonly string _connectionString = "Server=localhost;Database=db_zellaya;User ID=admin;Password=Metall50;";
+
+
+        [HttpGet]
         public IActionResult ListOrders()
         {
-            return View();
+            var orders = new List<Orders>();
+
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                var command = new MySqlCommand("SELECT * FROM db_zellaya.board_orders;", connection);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        orders.Add(new Orders
+                        {
+                            id_order = reader.GetInt32(0),
+                            num_order = reader.GetString(2),
+                            CreatedDate = reader.GetDateTime(3),
+                            ReadyDate = reader.GetDateTime(4),
+                            count_board = reader.GetInt32(5)
+                        });
+                    }
+                }
+            }
+
+            return View(orders);
         }
     }
 }

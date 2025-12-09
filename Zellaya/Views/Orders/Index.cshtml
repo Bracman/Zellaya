@@ -34,7 +34,7 @@
         <button onclick="changeContent('warehouse')">Кладовая</button>
         <button onclick="changeContent('calculator')">Калькулятор</button>
         <button onclick="changeContent('settings')">Настройки</button>
-        <button class="exit" onclick="changeContent('exit')">Выход</button>
+        <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
     </div>
     <div class="content" id="mainContent">
         <section id="ordersContent" class="orders">

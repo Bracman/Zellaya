@@ -19,10 +19,10 @@ namespace Zellaya.Controllers
         {
             var orders = new List<Orders>();
 
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("SELECT * FROM db_zellaya.board_orders;", connection);
+                var command = new MySqlCommand("SELECT * FROM db_zellaya.board_orders;", connection);
 
                 using (var reader = command.ExecuteReader())
                 {
