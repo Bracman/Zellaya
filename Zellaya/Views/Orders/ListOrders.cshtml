@@ -34,8 +34,8 @@
     </div>
 
     <div class="sidebar desktop-sidebar">
-        <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Заказы</button>
-        <button type="button" onclick="location.href='@Url.Action("Index", "KnowledgeBase")'">База знаний</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Управление производством</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
         <button type="button" onclick="location.href='#'">Кладовая</button>
         <button type="button" onclick="location.href='#'">Калькулятор</button>
         <button type="button" onclick="location.href='#'">Настройки</button>
@@ -59,7 +59,8 @@
                 <tbody id="ordersBody">
                     @foreach (var order in Model)
                     {
-                        <tr>
+                        <tr onclick="window.location='@Url.Action("Details", "Orders", new { id = order.id_order })'"
+                            style="cursor:pointer">
                             <td>Заказ @order.id_order</td>
                             <td>@order.num_order</td>
                             <td>@order.CreatedDate</td>

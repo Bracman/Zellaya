@@ -10,6 +10,10 @@ namespace Zellaya.Models
 
         public string code_board { get; set; } = default!;
 
+        public int is_active {  get; set; }
+
+        public int id_document {  get; set; }
+
     }
 
 

@@ -1,0 +1,93 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Cписок электронных плат";
+}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/css/list_boards.css" />
+    <script src="~/js/order_script.js"></script>
+</head>
+
+<body>
+    <!-- Мобильная шапка -->
+    <div class="mobile-header">
+        <button class="hamburger" id="hamburger">&#9776;</button>
+        <span class="header-title">Меню</span>
+    </div>
+
+    <!-- Мобильная боковая панель -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <div class="sidebar-content">
+            <button type="button" onclick="location.href='#'">Производство</button>
+            <button type="button" onclick="location.href='#'">Справочники</button>
+            <button type="button" onclick="location.href='#'">База знаний</button>
+            <button type="button" onclick="location.href='#'">Склад</button>
+            <button type="button" onclick="location.href='#'">Настройки</button>
+            <button type="button" class="exit" onclick="location.href='#'">Выход</button>
+        </div>
+    </div>
+
+    <!-- Десктопный сайдбар -->
+    <div class="sidebar desktop-sidebar">
+        <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Управление производством</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
+        <button type="button" onclick="location.href='#'">Склад</button>
+        <button type="button" onclick="location.href='#'">Настройки</button>
+        <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
+    </div>
+
+    <!-- Контент -->
+    <div class="content">
+        <div class="table-container">
+            <h1>Список электронных плат</h1>
+
+            <table id="ordersTable">
+                <thead>
+                    <tr>
+                        <th>Название платы</th>
+                        <th>Номер платы</th>
+                        <th>Чертёж</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var board in Model)
+                    {
+                        <tr>
+                            <td>@board.name_board</td>
+                            <td>@board.code_board</td>
+                            <td>
+                                @if (board.id_document != null)
+                                {
+                                    <a href="@Url.Action("OpenDoc", "Directories", new { id = board.id_board })" target="_blank">
+                                        📄 Открыть
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span style="color:gray;">Нет файла</span>
+                                }
+                            </td>
+                            <td>
+                                <form asp-action="ArchiveBoard" asp-controller="Boards" method="post" style="display:inline;">
+                                    <input type="hidden" name="id" value="@board.id_board" />
+                                    <button type="submit" class="btn-archive" onclick="return confirm('Архивировать плату?')">
+                                        
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</body>
+</html>

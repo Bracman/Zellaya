@@ -8,5 +8,9 @@ namespace Zellaya.Models
         public int id_order { get; set; }
 
         public DateTime date_order_creation { get; set; }
+
+        public DateTime date_ready_order{ get; set; }
+
+        public string order_number { get; set; }
     }
 }

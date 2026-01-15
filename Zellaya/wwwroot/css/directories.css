@@ -1,0 +1,232 @@
+﻿/* ===== базовые ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+/* ===== мобильная шапка ===== */
+.mobile-header {
+    display: none;
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1001;
+    border-radius: 8px;
+}
+
+.hamburger {
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* ===== мобильная боковая панель ===== */
+.mobile-sidebar {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(44, 62, 80, 0.95);
+    z-index: 1000;
+    padding-top: 50px;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+    .mobile-sidebar.active {
+        display: flex;
+    }
+
+    .mobile-sidebar .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 36px;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+    }
+
+    .mobile-sidebar button {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 12px;
+        background-color: #34495e;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+        .mobile-sidebar button.exit {
+            background-color: #e74c3c;
+        }
+
+/* ===== десктопный сайдбар ===== */
+.desktop-sidebar {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 200px;
+    background-color: #2c3e50;
+    padding: 20px 0;
+}
+
+    .desktop-sidebar button {
+        display: block;
+        width: 90%;
+        margin: 24px auto;
+        padding: 16px;
+        background-color: #34495e;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+        .desktop-sidebar button.exit {
+            background-color: #e74c3c;
+        }
+
+/* ===== основной контент ===== */
+.content {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px 20px;
+    box-sizing: border-box;
+}
+
+/* ===== карточка справочников ===== */
+.dir-page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.dir-card {
+    width: 100%;
+    max-width: 1050px;
+    background: white;
+    border-radius: 22px;
+    padding: 30px 34px;
+    box-shadow: 0 10px 34px rgba(0,0,0,0.08);
+}
+
+/* заголовок */
+.dir-header {
+    text-align: center;
+    margin-bottom: 26px;
+}
+
+    .dir-header h1 {
+        margin: 0;
+        color: #2c3e50;
+        font-size: 34px;
+        font-weight: 700;
+    }
+
+    .dir-header p {
+        margin: 6px 0 0 0;
+        font-size: 14px;
+        color: #6b7b8a;
+    }
+
+/* сетка */
+.dir-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+/* блок */
+.dir-block {
+    border-radius: 16px;
+    padding: 16px 18px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+
+    .dir-block h2 {
+        margin: 0 0 12px 0;
+        font-size: 28px;
+        font-weight: 700;
+        text-align: center;
+        color: #2c3e50;
+    }
+
+/* ссылки */
+.dir-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 14px 0;
+    color: #2c3e50;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: 0.15s ease-in-out;
+}
+
+    .dir-link:hover {
+        transform: translateX(5px);
+        text-decoration: underline;
+    }
+
+/* иконка */
+.icon {
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+/* пустой блок */
+.dir-block-empty {
+    background: rgba(0,0,0,0.02);
+}
+
+/* ===== адаптив ===== */
+@media (max-width: 767px) {
+    .mobile-header {
+        display: flex;
+    }
+
+    .desktop-sidebar {
+        display: none;
+    }
+
+    .content {
+        margin-left: 0;
+        width: 100%;
+        padding-top: 70px;
+    }
+
+    .dir-grid {
+        grid-template-columns: 1fr;
+    }
+}

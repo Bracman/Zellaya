@@ -13,9 +13,25 @@ namespace Zellaya.Data
 
         public DbSet<Board> Boards => Set<Board>(); 
 
+        public DbSet<Documents> Documents => Set<Documents>();
+
         public DbSet<Board_Orders> Board_Orders => Set<Board_Orders>();
         public DbSet<Component> Components=>Set<Component>();
 
         public DbSet<OrderComponent> OrderComponents => Set<OrderComponent>();
+
+        public DbSet<OrderItemDetails> OrderItemDetails { get; set; }
+
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<OrderItemDetails>()
+                .HasNoKey()        
+                .ToView(null);      
+        }
     }
+
 }

@@ -1,0 +1,131 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Справочники";
+}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+
+    <link rel="stylesheet" href="~/css/directories.css" />
+
+
+    <script src="~/js/order_script.js"></script>
+</head>
+
+<body>
+
+
+    <div class="mobile-header">
+        <button class="hamburger" id="hamburger">&#9776;</button>
+        <span class="header-title">Меню</span>
+    </div>
+
+
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-btn" id="closeBtn">&times;</button>
+
+        <div class="sidebar-content">
+            <button type="button" onclick="location.href=''">Управление производством</button>
+            <button type="button" onclick="location.href=''">Справочники</button>
+            <button type="button" onclick="location.href=''">База знаний</button>
+            <button type="button" onclick="location.href='#'">Склад</button>
+            <button type="button" onclick="location.href='#'">Настройки</button>
+            <button type="button" class="exit" onclick="location.href=''">Выход</button>
+        </div>
+    </div>
+
+
+    <div class="sidebar desktop-sidebar">
+        <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Управление производством</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
+        <button type="button" onclick="location.href='#'">Кладовая</button>
+        <button type="button" onclick="location.href='#'">Калькулятор</button>
+        <button type="button" onclick="location.href='#'">Настройки</button>
+        <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
+    </div>
+
+    <main class="content">
+        <section class="dir-page">
+            <div class="dir-card">
+
+                <div class="dir-header">
+                    <h1>Справочники</h1>
+                    <p>Что делаем дальше?</p>
+                </div>
+
+                <div class="dir-grid">
+
+
+                    <div class="dir-block">
+                        <h2>Платы</h2>
+
+
+                        <a class="dir-link" href='#'>
+                            <span class="icon"></span>
+                            Добавить плату
+                        </a>
+
+                        <a class="dir-link" href="@Url.Action("ListBoarders", "Directories")">
+                            <span class="icon"></span>
+                            Просмотр плат
+                        </a>
+
+
+
+                        <a class="dir-link" href='#'>
+                            <span class="icon"></span>
+                            Архивация плат
+                        </a>
+                    </div>
+
+
+                    <div class="dir-block">
+                        <h2>Радиокомпоненты</h2>
+
+                        <a class="dir-link" href=>
+                            <span class="icon"></span>
+                            Добавить радиокомпонент
+                        </a>
+
+                        <a class="dir-link" href=>
+                            <span class="icon"></span>
+                            Просмотр радиокомпонентов
+                        </a>
+
+                        <a class="dir-link" href=>
+                            <span class="icon"></span>
+                            Архивация радиокомпонентов
+                        </a>
+                    </div>
+
+
+                    <div class="dir-block dir-block-empty">
+                        <h2>Склад</h2>
+
+                        <a class="dir-link" href="#">
+                            <span class="icon"></span>
+                            Остатки компонентов
+                        </a>
+
+                        <a class="dir-link" href="#">
+                            <span class="icon"></span>
+                            Приход / Расход
+                        </a>
+
+                        <a class="dir-link" href="#">
+                            <span class="icon"></span>
+                            Отчёты
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

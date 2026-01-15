@@ -7,7 +7,7 @@ body {
     min-height: 100vh;
 }
 
-/* Кнопка гамбургера */
+
 .mobile-header {
     display: none;
     background-color: #2c3e50;

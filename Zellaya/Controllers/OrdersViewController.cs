@@ -31,10 +31,10 @@ namespace Zellaya.Controllers
                         orders.Add(new Orders
                         {
                             id_order = reader.GetInt32(0),
-                            num_order = reader.GetString(2),
-                            CreatedDate = reader.GetDateTime(3),
-                            ReadyDate = reader.GetDateTime(4),
-                            count_board = reader.GetInt32(5)
+                            num_order = reader.GetString(1),
+                            CreatedDate = reader.GetDateTime(2),
+                            ReadyDate = reader.GetDateTime(3),
+                            count_board = reader.GetInt32(4)
                         });
                     }
                 }
