@@ -1,0 +1,82 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Добавить плату";
+}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/css/board_create.css" />   
+    <script src="~/js/board_create_script.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+</head>
+
+<body>
+    <!-- Мобильная шапка -->
+    <div class="mobile-header">
+        <button class="hamburger" id="hamburger">&#9776;</button>
+        <span class="header-title">Меню</span>
+    </div>
+
+    <!-- Мобильная боковая панель -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <div class="sidebar-content">
+            <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Производство</button>
+            <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
+            <button type="button" onclick="location.href='@Url.Action("Index", "Boards")'">Платы</button>
+            <button type="button" onclick="location.href='@Url.Action("Index", "Components")'">Радиокомпоненты</button>
+            <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
+        </div>
+    </div>
+
+    <!-- Десктопный сайдбар -->
+    <div class="sidebar desktop-sidebar">
+        <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Управление производством</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Inventory")'">Кладовая</button>
+        <button type="button" onclick="location.href='#'">Калькулятор</button>
+        <button type="button" onclick="location.href='#'">Настройки</button>
+        <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
+    </div>
+
+    <!-- Контент -->
+    <main class="content">
+        <section class="board-create">
+            <form id="createBoardForm" class="board-card" enctype="multipart/form-data">
+                <header class="board-head">
+                    <h2>Добавление новой платы</h2>
+                    <p class="muted">Заполните данные и прикрепите спецификацию (PDF/DOCX)</p>
+                </header>
+
+                <div class="form-item">
+                    <label>Название платы</label>
+                    <input type="text" id="newBoardName" placeholder="Введите название платы" required />
+                </div>
+
+                <div class="form-item">
+                    <label>Код платы</label>
+                    <input type="text" id="newBoardCode" placeholder="Введите уникальный код" required />
+                </div>
+
+                <div class="form-item">
+                    <label>Спецификация платы (PDF/DOCX)</label>
+                    <input type="file" id="newBoardFile" accept=".pdf,.doc,.docx" required />
+                </div>
+
+                <div class="actions">
+                    <button type="button" class="btn btn-primary" id="saveBoardBtn">Сохранить</button>
+                    <a class="btn btn-secondary" href="@Url.Action("Index", "Directories")">Назад</a>
+                </div>
+
+                <div id="msgBox" class="msg hidden"></div>
+            </form>
+        </section>
+    </main>  
+    </body>
+</html>

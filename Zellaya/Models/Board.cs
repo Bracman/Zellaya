@@ -12,7 +12,7 @@ namespace Zellaya.Models
 
         public int is_active {  get; set; }
 
-        public int id_document {  get; set; }
+        public int? id_document {  get; set; }
 
     }
 

@@ -22,6 +22,7 @@ namespace Zellaya.Data
 
         public DbSet<OrderItemDetails> OrderItemDetails { get; set; }
 
+        public DbSet<StockMovement> StockMovements { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -30,7 +31,14 @@ namespace Zellaya.Data
 
             modelBuilder.Entity<OrderItemDetails>()
                 .HasNoKey()        
-                .ToView(null);      
+                .ToView(null);
+            modelBuilder.Entity<StockMovement>()
+                .ToTable("stock_movements")
+                .HasKey(x => x.id_movement);
+            modelBuilder.Entity<StockMovement>()
+                  .HasOne(m => m.Component)
+                  .WithMany(c => c.StockMovements)
+                  .HasForeignKey(m => m.id_component);
         }
     }
 

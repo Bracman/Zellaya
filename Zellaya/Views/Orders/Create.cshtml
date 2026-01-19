@@ -41,7 +41,7 @@
     <div class="sidebar desktop-sidebar">
         <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Управление производством</button>
         <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
-        <button type="button" onclick="location.href='#'">Кладовая</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Inventory")'">Кладовая</button>
         <button type="button" onclick="location.href='#'">Калькулятор</button>
         <button type="button" onclick="location.href='#'">Настройки</button>
         <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
@@ -83,11 +83,7 @@
                 <div class="form-item">
                     <label asp-for="BoardQuantity">Количество плат</label>
                     <input asp-for="BoardQuantity" type="number" min="1" max="10" onchange="generateBoardFields()" class="form-control" />
-                    <span asp-validation-for="BoardQuantity" class="danger"></span>\
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox" id="addNewBoardCheckbox" />
-                        <label for="addNewBoardCheckbox">Добавить новую плату</label>
-                    </div>
+                    <span asp-validation-for="BoardQuantity" class="danger"></span>                    
                 </div>
 
                 <div class="form-item">
@@ -95,29 +91,7 @@
                     <input asp-for="ComponentQuantity" type="number" min="1" max="10" onchange="generateComponentFields()" class="form-control" />
                     <span asp-validation-for="ComponentQuantity" class="danger"></span>
                 </div>
-            </div>
-
-            <div id="newBoardForm" class="hidden">
-                <h3>Добавление новой платы</h3>
-                <div class="form-item">
-                    <label>Название платы</label>
-                    <input type="text" id="newBoardName" placeholder="Введите название" />
-                </div>
-
-                <div class="form-item">
-                    <label>Код платы</label>
-                    <input type="text" id="newBoardCode" placeholder="Введите уникальный номер" />
-                </div>
-
-                <div class="form-item">
-                    <label>Спецификация платы(PDF/DOCX)</label>
-                    <input type="file" id="newBoardFile" accept=".pdf,.doc,.docx" />
-                </div>
-
-                <!-- Кнопка сохранить плату - появляется только при активации чекбокса -->
-                <button type="button" class="btn btn-small" id="saveNewBoardBtn">Сохранить плату</button>
-            </div>
-
+            </div>        
 
             <!-- Динамически добавляемые поля для выбора плат -->
             <div id="boardFieldsContainer"></div>

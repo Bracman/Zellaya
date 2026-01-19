@@ -1,0 +1,245 @@
+﻿body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+/* ===== мобильная шапка ===== */
+.mobile-header {
+    display: none;
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1001;
+    border-radius: 10px;
+}
+
+.hamburger {
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* ===== мобильная боковая панель ===== */
+.mobile-sidebar {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(44, 62, 80, 0.95);
+    z-index: 1000;
+    padding-top: 50px;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+    .mobile-sidebar.active {
+        display: flex;
+    }
+
+    .mobile-sidebar .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 36px;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+    }
+
+    .mobile-sidebar button {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 12px;
+        background-color: #34495e;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+        .mobile-sidebar button.exit {
+            background-color: #e74c3c;
+        }
+
+/* ===== сайдбар ===== */
+.desktop-sidebar {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 200px;
+    background-color: #2c3e50;
+    padding: 20px 0;
+}
+
+    .desktop-sidebar button {
+        display: block;
+        width: 90%;
+        margin: 24px auto;
+        padding: 16px;
+        background-color: #34495e;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+        .desktop-sidebar button.exit {
+            background-color: #e74c3c;
+        }
+
+/* ===== контент ===== */
+.content {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px 20px;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+.board-create {
+    width: 100%;
+    max-width: 720px;
+}
+
+.board-card {
+    background: #fff;
+    border: 1px solid rgba(31,45,58,0.06);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(31,45,58,0.10);
+    padding: 24px;
+}
+
+.board-head h2 {
+    margin: 0 0 6px 0;
+    font-size: 28px;
+    color: #2c3e50;
+    text-align: center;
+}
+
+.board-head .muted {
+    margin: 0 0 20px 0;
+    color: #6b7b8a;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* inputs */
+.form-item {
+    margin-bottom: 16px;
+}
+
+    .form-item label {
+        display: block;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 6px;
+    }
+
+    .form-item input[type="text"],
+    .form-item input[type="file"] {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ccd1d9;
+        border-radius: 10px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+/* кнопки */
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.btn {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: #2c97de;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #95a5a6;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #1e83c6;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+}
+
+/* сообщения */
+.msg {
+    margin-top: 18px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 14px;
+    text-align: center;
+}
+
+    .msg.ok {
+        background: rgba(46, 204, 113, 0.15);
+        color: #1e8449;
+        border: 1px solid rgba(46, 204, 113, 0.3);
+    }
+
+    .msg.err {
+        background: rgba(231, 76, 60, 0.15);
+        color: #c0392b;
+        border: 1px solid rgba(231, 76, 60, 0.3);
+    }
+
+.hidden {
+    display: none;
+}
+
+/* mobile */
+@media (max-width: 767px) {
+    .mobile-header {
+        display: flex;
+    }
+
+    .desktop-sidebar {
+        display: none;
+    }
+
+    .content {
+        margin-left: 0;
+        width: 100%;
+        padding-top: 70px;
+    }
+}

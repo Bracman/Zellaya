@@ -1,0 +1,94 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Добавить радиокомпонент";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/css/component_create.css" />
+    <script src="~/js/component_create_script.js"></script>
+</head>
+
+<body>
+
+   
+    <div class="mobile-header">
+        <button class="hamburger" id="hamburger">&#9776;</button>
+        <span class="header-title">Меню</span>
+    </div>
+
+    
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <div class="sidebar-content">
+            <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Производствохуев</button>
+            <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
+            <button type="button" onclick="location.href='@Url.Action("ListBoarders", "Directories")'">Платыs</button>
+            <button type="button" onclick="location.href='@Url.Action("Index", "Components")'">Радиокомпоненты</button>
+            <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
+        </div>
+    </div>
+    
+    <div class="sidebar desktop-sidebar">
+        <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Управление производством</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Inventory")'">Кладовая</button>
+        <button type="button" onclick="location.href='#'">Калькулятор</button>
+        <button type="button" onclick="location.href='#'">Настройки</button>
+        <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
+    </div>
+
+   
+    <main class="content">
+        <section class="comp-create">
+            <form asp-action="ComponentCreate" asp-controller="Components" method="post" class="comp-card">
+
+                <header class="comp-head">
+                    <h2>Добавление радиокомпонента</h2>
+                    <p class="muted">Заполните данные и нажмите «Сохранить»</p>
+                </header>
+
+                @*  *@
+                <div class="danger">
+                    @Html.ValidationSummary()
+                </div>
+
+                <div class="form-item">
+                    <label>Название компонента</label>
+                    <input type="text" name="name_component" id="name_component"
+                           placeholder="например: конденсатор 100мкф" required />
+                </div>
+
+                <div class="form-item">
+                    <label>Тип компонента</label>
+                    <input type="text" name="type_component" id="type_component"
+                           placeholder="например: конденсатор" required />
+                    <small class="hint">Только буквы (рус/англ), без цифр. Автоматически в нижнем регистре.</small>
+                </div>
+
+                <div class="form-item">
+                    <label>Серийный/Парт-номер/Артикул</label>
+                    <input type="text" name="serial_number" id="serial_number"
+                           placeholder="например: LM358DR / 0805-10K-1%" />
+                </div>
+
+                <div class="form-item">
+                    <label>Параметры</label>
+                    <textarea name="params_text" id="params_text" rows="5"
+                              placeholder="Пример:1 мкФ / 160В"></textarea>
+                </div>
+
+                <div class="actions">
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                    <a class="btn btn-secondary" href="@Url.Action("Index", "Directories")">Назад</a>
+                </div>
+            </form>
+        </section>
+    </main> 
+</body>
+</html>

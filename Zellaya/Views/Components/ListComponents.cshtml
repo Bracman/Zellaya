@@ -1,0 +1,110 @@
+﻿@model List<Component>
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Радиокомпоненты";
+
+    var types = ViewBag.Types as List<string> ?? new List<string>();
+    var selectedType = ViewBag.SelectedType as string ?? "all";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/css/list_orders.css" />
+    <script src="~/js/order_script.js"></script>
+</head>
+
+<body>
+    <!-- Мобильная шапка -->
+    <div class="mobile-header">
+        <button class="hamburger" id="hamburger">&#9776;</button>
+        <span class="header-title">Меню</span>
+    </div>
+
+    <!-- Мобильная боковая панель -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <div class="sidebar-content">
+            <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Производство</button>
+            <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
+            <button type="button" onclick="location.href='@Url.Action("ListBoarders", "Directories")'">Платы</button>
+            <button type="button" onclick="location.href='@Url.Action("Index", "Components")'">Радиокомпоненты</button>
+            <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
+        </div>
+    </div>
+
+    <!-- Десктопный сайдбар -->
+    <div class="sidebar desktop-sidebar">
+        <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Управление производством</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Inventory")'">Кладовая</button>
+        <button type="button" onclick="location.href='#'">Калькулятор</button>
+        <button type="button" onclick="location.href='#'">Настройки</button>
+        <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
+    </div>
+
+   
+    <div class="content">
+        <div class="table-container">
+
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+                <h1 style="margin:0;">Список радиокомпонентов</h1>
+
+                <a class="btn btn-primary" style="text-decoration:none;"
+                   href="@Url.Action("ComponentCreate", "Components")">
+                    ➕ Добавить
+                </a>
+            </div>
+
+          
+            <form method="get" style="margin-top:12px; margin-bottom:12px; display:flex; gap:10px; align-items:center;">
+                <label style="font-weight:600; color:#2c3e50;">Тип:</label>
+
+                <select name="type" onchange="this.form.submit()"
+                        style="padding:8px 10px; border-radius:10px; border:1px solid #ccd1d9;">
+                    <option value="all" selected="@(selectedType == "all")">Все</option>
+
+                    @foreach (var t in types)
+                    {
+                        <option value="@t" selected="@(selectedType == t)">@t</option>
+                    }
+                </select>
+            </form>
+
+            <table id="ordersTable">
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Тип</th>
+                        <th>Парт-номер</th>
+                        <th style="width:45%;">Характеристики</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var c in Model)
+                    {
+                        <tr>
+                            <td>@c.name</td>
+                            <td>@c.type_component</td>
+                            <td>@c.part_number</td>
+                            <td style="white-space:pre-line;">@c.param_text</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @if (!Model.Any())
+            {
+                <p style="margin-top:14px; color:gray;">Компоненты не найдены.</p>
+            }
+
+        </div>
+    </div>
+</body>
+</html>

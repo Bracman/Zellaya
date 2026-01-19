@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices.JavaScript;
 
 namespace Zellaya.Models
 {
@@ -10,7 +11,15 @@ namespace Zellaya.Models
         [Required, StringLength(128)]
         public string name { get; set; } = default!;
 
-        // опционально: остаток на складе
-        public int? StockQty { get; set; }
+        public string type_component { get; set; }
+
+        public string part_number { get; set; }
+
+        public string param_text { get; set; }
+
+        public int is_active_component { get; set; }
+
+        public List<StockMovement>? StockMovements { get; set; }
+
     }
 }

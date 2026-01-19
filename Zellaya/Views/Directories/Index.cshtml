@@ -42,7 +42,7 @@
     <div class="sidebar desktop-sidebar">
         <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Управление производством</button>
         <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
-        <button type="button" onclick="location.href='#'">Кладовая</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Inventory")'">Кладовая</button>
         <button type="button" onclick="location.href='#'">Калькулятор</button>
         <button type="button" onclick="location.href='#'">Настройки</button>
         <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
@@ -64,7 +64,7 @@
                         <h2>Платы</h2>
 
 
-                        <a class="dir-link" href='#'>
+                        <a class="dir-link" href='@Url.Action("BoardCreate", "Directories")'>
                             <span class="icon"></span>
                             Добавить плату
                         </a>
@@ -76,9 +76,9 @@
 
 
 
-                        <a class="dir-link" href='#'>
+                        <a class="dir-link" href='@Url.Action("ListArchiveBoards", "Directories")'>
                             <span class="icon"></span>
-                            Архивация плат
+                            Архив плат
                         </a>
                     </div>
 
@@ -86,12 +86,12 @@
                     <div class="dir-block">
                         <h2>Радиокомпоненты</h2>
 
-                        <a class="dir-link" href=>
+                        <a class="dir-link" href='@Url.Action("ComponentCreate", "Components")'>
                             <span class="icon"></span>
                             Добавить радиокомпонент
                         </a>
 
-                        <a class="dir-link" href=>
+                        <a class="dir-link" href='@Url.Action("ListComponents", "Components")'>
                             <span class="icon"></span>
                             Просмотр радиокомпонентов
                         </a>
@@ -100,27 +100,7 @@
                             <span class="icon"></span>
                             Архивация радиокомпонентов
                         </a>
-                    </div>
-
-
-                    <div class="dir-block dir-block-empty">
-                        <h2>Склад</h2>
-
-                        <a class="dir-link" href="#">
-                            <span class="icon"></span>
-                            Остатки компонентов
-                        </a>
-
-                        <a class="dir-link" href="#">
-                            <span class="icon"></span>
-                            Приход / Расход
-                        </a>
-
-                        <a class="dir-link" href="#">
-                            <span class="icon"></span>
-                            Отчёты
-                        </a>
-                    </div>
+                    </div>                  
 
                 </div>
             </div>

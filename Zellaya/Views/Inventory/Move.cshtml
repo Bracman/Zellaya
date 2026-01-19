@@ -1,0 +1,114 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Приход / Расход";
+
+    var components = ViewBag.Components as List<Component> ?? new List<Component>();
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/css/component_create.css" />
+</head>
+
+<body>
+    <div class="sidebar desktop-sidebar">
+        <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Управление производством</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Inventory")'">Склад</button>
+        <button type="button" onclick="location.href='#'">Калькулятор</button>
+        <button type="button" onclick="location.href='#'">Настройки</button>
+        <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
+    </div>
+
+    <main class="content">
+        <section class="comp-create">
+            <form id="moveForm" class="comp-card">
+                <header class="comp-head">
+                    <h2>Приход / Расход</h2>
+                    <p class="muted">Оформите движение склада</p>
+                </header>
+
+                <div class="form-item">
+                    <label>Компонент</label>
+                    <select name="id_component" id="id_component" required>
+                        <option value="">— выбрать —</option>
+                        @foreach (var c in components)
+                        {
+                            <option value="@c.id_component">@c.name (@c.part_number)</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-item">
+                    <label>Операция</label>
+                    <select name="movement_type" id="movement_type">
+                        <option value="IN">Приход</option>
+                        <option value="OUT">Расход</option>
+                    </select>
+                </div>
+
+                <div class="form-item">
+                    <label>Количество</label>
+                    <input type="number" id="qty" name="qty" min="1" value="1" required />
+                </div>
+
+                <div class="form-item">
+                    <label>Комментарий</label>
+                    <input type="text" id="comment" name="comment"
+                           placeholder="например: пришло по накладной" />
+                </div>
+
+                <div class="actions">
+                    <button type="button" class="btn btn-primary" id="saveMoveBtn">Сохранить</button>
+                    <a class="btn btn-secondary" href="@Url.Action("Index", "Inventory")">Назад</a>
+                </div>
+
+                <div id="msgBox" class="msg hidden"></div>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        const msgBox = document.getElementById("msgBox");
+
+        function showMsg(text, ok) {
+            msgBox.classList.remove("hidden");
+            msgBox.classList.remove("ok", "err");
+            msgBox.classList.add(ok ? "ok" : "err");
+            msgBox.innerText = text;
+
+            setTimeout(() => msgBox.classList.add("hidden"), 4000);
+        }
+
+        document.getElementById("saveMoveBtn").addEventListener("click", async () => {
+            const formData = new FormData(document.getElementById("moveForm"));
+
+            try {
+                const response = await fetch("@Url.Action("Move", "Inventory")", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    showMsg(result.message, true);
+
+                    document.getElementById("id_component").value = "";
+                    document.getElementById("qty").value = 1;
+                    document.getElementById("comment").value = "";
+                } else {
+                    showMsg(result.message || "Ошибка", false);
+                }
+            } catch (err) {
+                showMsg("Ошибка соединения: " + err.message, false);
+            }
+        });
+    </script>
+</body>
+</html>
