@@ -1,0 +1,54 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Панель пользователя";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/user_panel_style.css" />
+</head>
+<body>
+
+    
+    <div class="content">
+        <div class="dashboard-card">
+
+            <h1>Рабочая панель пользователя</h1>
+            <p class="muted">Просмотр заказов, плат и доработок</p>
+
+            <div class="dashboard-grid">
+
+                <a href="@Url.Action("UserOrders", "UserPanel")" class="dash-tile">                    
+                    <div class="title">Заказы</div>
+                    <div class="desc">Просмотр текущих заказов</div>
+                </a>
+
+                <a href="@Url.Action("UserReworks", "Reworks")" class="dash-tile">                  
+                    <div class="title">Доработки</div>
+                    <div class="desc">Список задач на доработку</div>
+                </a>
+
+                <a href="@Url.Action("UserBoards", "Boards")" class="dash-tile">                   
+                    <div class="title">Платы</div>
+                    <div class="desc">Просмотр электронных плат</div>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ПРАВАЯ БОКОВАЯ ПАНЕЛЬ -->
+    <div class="right-sidebar">
+
+        <button onclick="location.href='@Url.Action("UserOrders", "Orders")'">Заказы</button>
+        <button onclick="location.href='@Url.Action("UserReworks", "Reworks")'">Доработки</button>
+        <button onclick="location.href='@Url.Action("UserBoards", "Boards")'">Платы</button>
+        <button class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
+
+    </div>
+
+</body>
+</html>

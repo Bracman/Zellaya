@@ -9,6 +9,8 @@ namespace Zellaya.Data
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Roles> Roles { get; set; }
+
         public DbSet<Order> Orders => Set<Order>();
 
         public DbSet<Board> Boards => Set<Board>(); 
@@ -39,6 +41,8 @@ namespace Zellaya.Data
                   .HasOne(m => m.Component)
                   .WithMany(c => c.StockMovements)
                   .HasForeignKey(m => m.id_component);
+
+            modelBuilder.Entity<ListUserItem>().HasNoKey();
         }
     }
 

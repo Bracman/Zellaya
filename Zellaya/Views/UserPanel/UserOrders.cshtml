@@ -1,0 +1,79 @@
+﻿@model List<Board_Orders>
+@{
+    Layout = null;
+    ViewData["Title"] = "Мои заказы";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/user_orders_style.css" />
+</head>
+
+<body>
+
+    
+    <div class="right-sidebar">
+        <h3>Меню</h3>
+
+        <a href="@Url.Action("UserOrders", "UserPanel")">Заказы</a>
+        <a href="@Url.Action("Reworks", "User")">Доработки</a>
+        <a href="@Url.Action("Boards", "User")">Платы</a>
+        <a href="@Url.Action("Login", "Account")" class="exit">Выход</a>
+    </div>
+
+    <div class="content">
+        <div class="table-box">
+            <h1>Список заказов</h1>
+
+            <label>Фильтр по статусу:</label>
+            <select id="statusFilter" onchange="filterStatus()">
+                <option value="">Все</option>
+                <option value="Создан">Создан</option>
+                <option value="В работе">В работе</option>
+                <option value="Выполнен">Выполнен</option>
+                <option value="Закрыт">Закрыт</option>
+            </select>
+
+            <table id="ordersTable">
+                <thead>
+                    <tr>
+                        <th data-sort="name">№</th>
+                        <th data-sort="number">Номер заказа</th>
+                        <th data-sort="date">Дата заказа</th>
+                        <th data-sort="ready">Дата готовности</th>
+                        <th data-sort="qty">Кол-во</th>
+                        <th data-sort="status">Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var o in Model)
+                    {
+                        <tr onclick="window.location='@Url.Action("UserOrderDetails", "UserPanel", new { id = o.id_order })'">
+                            <td>@o.id_order</td>
+                            <td>@o.order_number</td>
+                            <td>@o.date_order_creation</td>
+                            <td>@o.date_ready_order</td>
+                            <td>@o.count_board</td>
+                            <td class="status">@o.status_order</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        function filterStatus() {
+            let filter = document.getElementById("statusFilter").value;
+            let rows = document.querySelectorAll("#ordersTable tbody tr");
+
+            rows.forEach(row => {
+                let status = row.querySelector(".status").innerText;
+                row.style.display = (filter === "" || status === filter) ? "" : "none";
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+﻿body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Контент */
+.content {
+    flex: 1;
+    padding: 40px;
+    margin-right: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-card {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.muted {
+    color: #7f8c8d;
+    margin-bottom: 30px;
+}
+
+/* Плитки */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 20px;
+}
+
+.dash-tile {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 25px;
+    text-decoration: none;
+    color: #2c3e50;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.2s;
+}
+
+    .dash-tile:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+.icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.desc {
+    font-size: 13px;
+    color: #7f8c8d;
+}
+
+/* ПРАВАЯ ПАНЕЛЬ */
+.right-sidebar {
+    width: 200px;
+    background: #2c3e50;
+    padding-top: 30px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+}
+
+    .right-sidebar button {
+        display: block;
+        width: 90%;
+        margin: 20px auto;
+        padding: 14px;
+        background: #34495e;
+        color: white;
+        border: none;
+        border-radius: 14px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        .right-sidebar button:hover {
+            background: #3d5a73;
+        }
+
+    .right-sidebar .exit {
+        background: #e74c3c;
+    }
+
+        .right-sidebar .exit:hover {
+            background: #c0392b;
+        }

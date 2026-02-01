@@ -1,0 +1,80 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Настройки";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/css/settings_style.css" />
+    <script src="~/js/order_script.js"></script>
+</head>
+
+<body>
+
+    <!-- Мобильная шапка -->
+    <div class="mobile-header">
+        <button class="hamburger" id="hamburger">&#9776;</button>
+        <span class="header-title">Меню</span>
+    </div>
+
+    <!-- Мобильная боковая панель -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-btn" id="closeBtn">&times;</button>
+
+        <div class="sidebar-content">
+            <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Управление производством</button>
+            <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
+            <button type="button" onclick="location.href='@Url.Action("Index", "Inventory")'">Склад</button>
+            <button type="button" onclick="location.href='@Url.Action("Index", "Settings")'">Настройки</button>
+            <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
+        </div>
+    </div>
+
+    <!-- Десктопный сайдбар -->
+    <div class="sidebar desktop-sidebar">
+        <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Управление производством</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Inventory")'">Склад</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Settings")'">Настройки</button>
+        <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
+    </div>
+
+    <!-- Контент -->
+    <main class="content">
+        <section class="settings-page">
+            <div class="settings-card">
+
+                <header class="settings-header">
+                    <h1>Настройки</h1>
+                    <p>Управление параметрами пользователей</p>
+                </header>
+
+                <div class="settings-grid">
+
+                    <a class="settings-tile" href="@Url.Action("ListUsers", "Settings")">
+                        <div class="tile-title">Пользователи</div>
+                        <div class="tile-desc">Просмотр список пользователей</div>
+                    </a>
+
+                    <a class="settings-tile" href="@Url.Action("CreateUser", "Settings")">
+                        <div class="tile-title">Создать пользователя</div>
+                        <div class="tile-desc">Добавить нового пользователя</div>
+                    </a>
+
+                    <a class="settings-tile" href="@Url.Action("SetUser", "Settings")">
+                        <div class="tile-title">Изменить параметры пользователя</div>
+                        <div class="tile-desc">Изменить логин или пароль пользователя</div>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

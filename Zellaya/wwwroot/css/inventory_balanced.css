@@ -1,0 +1,246 @@
+﻿body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    min-height: 100vh;
+    display: flex;
+}
+
+.desktop-sidebar {
+    width: 200px;
+    background: #2c3e50;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    padding: 20px 0;
+}
+
+    .desktop-sidebar button {
+        width: 90%;
+        margin: 20px auto;
+        display: block;
+        padding: 15px;
+        border-radius: 18px;
+        border: none;
+        cursor: pointer;
+        background: #34495e;
+        color: white;
+        font-size: 16px;
+    }
+
+        .desktop-sidebar button.exit {
+            background: #e74c3c;
+        }
+
+.content {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+    padding: 30px 20px;
+    box-sizing: border-box;
+}
+
+.card {
+    max-width: 1150px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 18px;
+    padding: 22px;
+    border: 1px solid rgba(31,45,58,.06);
+    box-shadow: 0 10px 30px rgba(31,45,58,.10);
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+    .head h1 {
+        margin: 0;
+        font-size: 30px;
+        color: #2c3e50;
+    }
+
+.muted {
+    margin: 6px 0 0;
+    color: #6b7b8a;
+    font-size: 14px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: #2c97de;
+    color: white;
+}
+
+.btn-secondary {
+    background: #95a5a6;
+    color: white;
+}
+
+.filters {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 12px;
+}
+
+.f-item label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 800;
+    font-size: 13px;
+    color: #2c3e50;
+}
+
+.f-item input, .f-item select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid #ccd1d9;
+    font-size: 14px;
+    outline: none;
+}
+
+.table-wrap {
+    margin-top: 16px;
+    overflow: auto;
+    border-radius: 14px;
+    border: 1px solid #eef1f5;
+}
+
+#balancesTable {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 820px;
+}
+
+    #balancesTable thead th {
+        background: #f3f6f9;
+        padding: 12px;
+        font-weight: 900;
+        text-align: left;
+        border-bottom: 1px solid #e5eaf0;
+        color: #2c3e50;
+    }
+
+    #balancesTable tbody td {
+        padding: 12px;
+        border-bottom: 1px solid #eef1f5;
+        color: #2c3e50;
+    }
+
+    #balancesTable tbody tr:hover {
+        background: #f8fafc;
+    }
+
+.qty {
+    text-align: center;
+    width: 140px;
+}
+
+.pill {
+    display: inline-block;
+    min-width: 64px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-weight: 900;
+    font-size: 13px;
+}
+
+    .pill.zero {
+        background: rgba(231,76,60,.18);
+        border: 1px solid rgba(231,76,60,.35);
+    }
+
+    .pill.low {
+        background: rgba(241,196,15,.20);
+        border: 1px solid rgba(241,196,15,.35);
+    }
+
+    .pill.mid {
+        background: rgba(46,204,113,.18);
+        border: 1px solid rgba(46,204,113,.35);
+    }
+
+    .pill.high {
+        background: rgba(44,151,222,.18);
+        border: 1px solid rgba(44,151,222,.35);
+    }
+
+.empty {
+    margin-top: 14px;
+    padding: 12px;
+    border-radius: 12px;
+    background: #f8fafc;
+    border: 1px solid #eef1f5;
+    color: #6b7b8a;
+    text-align: center;
+}
+
+.desktop-sidebar {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 200px;
+    background-color: #2c3e50;
+    padding: 20px 0;
+}
+.desktop-sidebar button {
+        display: block;
+        width: 90%;
+        margin: 24px auto;
+        padding: 16px;
+        background-color: #34495e;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 18px;
+ }
+.desktop-sidebar button.exit {
+        background-color: #e74c3c;
+ }  
+
+       
+
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 1000px) {
+    .filters {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 767px) {
+    .desktop-sidebar {
+        display: none;
+    }
+
+    .content {
+        margin-left: 0;
+        width: 100%;
+        padding: 16px;
+    }
+}

@@ -1,0 +1,131 @@
+﻿@model OrderDetails
+@{
+    Layout = null;
+    ViewData["Title"] = "Детали заказа";
+}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/user_order_details.css" />
+</head>
+<body>
+
+   
+    <div class="right-sidebar">
+        <h3>Меню</h3>
+        <a href="@Url.Action("UserOrders", "User")">Заказы</a>
+        <a href="#">Доработки</a>
+        <a href="#">Платы</a>
+        <a href="@Url.Action("Logout", "Account")" class="exit">Выход</a>
+    </div>
+
+    <div class="content">
+        <div class="table-container">
+
+            <h1>Детали заказа</h1>
+
+            <div class="order-info">
+                <p><strong>Номер заказа:</strong> @Model.order_number</p>
+                <p><strong>Дата создания:</strong> @Model.CreatedDate</p>
+                <p><strong>Дата готовности:</strong> @Model.ReadyDate</p>
+            </div>
+
+
+            <div class="status-box">
+                <form method="post" asp-action="ChangeStatus" asp-controller="UserPanel">
+
+                    <input type="hidden" name="id" value="@Model.order_number" />
+
+                    <label><strong>Статус заказа:</strong></label>
+
+                    <select name="status" class="status-select">
+
+                        @if (Model.status_order == "Создан")
+                        {
+                            <option value="Создан" selected>Создан</option>
+                        }
+                        else
+                        {
+                            <option value="Создан">Создан</option>
+                        }
+
+                        @if (Model.status_order == "В работе")
+                        {
+                            <option value="В работе" selected>В работе</option>
+                        }
+                        else
+                        {
+                            <option value="В работе">В работе</option>
+                        }
+
+                        @if (Model.status_order == "Выполнен")
+                        {
+                            <option value="Выполнен" selected>Выполнен</option>
+                        }
+                        else
+                        {
+                            <option value="Выполнен">Выполнен</option>
+                        }
+
+                        @if (Model.status_order == "Закрыт")
+                        {
+                            <option value="Закрыт" selected>Закрыт</option>
+                        }
+                        else
+                        {
+                            <option value="Закрыт">Закрыт</option>
+                        }
+
+                    </select>
+
+                    <button type="submit" class="btn-save">Сохранить</button>
+                </form>
+            </div>
+
+            <hr />
+
+            <h3>Состав заказа</h3>
+
+            <table id="ordersTable">
+                <thead>
+                    <tr>
+                        <th>Имя компонента</th>
+                        <th>Тип компонента</th>
+                        <th>Кол-во</th>
+                        <th>Номер</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model.Items != null && Model.Items.Any())
+                    {
+                        foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>@item.name_component</td>
+                                <td>@item.type_component</td>
+                                <td>@item.count_component</td>
+                                <td>@item.part_number</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="no-data">
+                                Нет данных по компонентам
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <a class="back-btn" href="@Url.Action("UserOrders", "UserPanel")">← Назад к заказам</a>
+
+        </div>
+    </div>
+
+</body>
+</html>

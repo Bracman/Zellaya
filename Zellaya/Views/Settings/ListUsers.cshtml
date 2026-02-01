@@ -1,0 +1,89 @@
+﻿@model List<ListUserItem>
+@{
+    Layout = null;
+    ViewData["Title"] = "Список пользователей";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/css/list_users_style.css" />
+</head>
+
+<body>
+   
+    <div class="mobile-header">
+        <button class="hamburger" id="hamburger">&#9776;</button>
+        <span class="header-title">Меню</span>
+    </div>
+
+   
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="close-btn" id="closeBtn">&times;</button>
+
+        <div class="sidebar-content">
+            <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Управление производством</button>
+            <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
+            <button type="button" onclick="location.href='@Url.Action("Index", "Inventory")'">Склад</button>
+            <button type="button" onclick="location.href='@Url.Action("Index", "Settings")'">Настройки</button>
+            <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
+        </div>
+    </div>
+
+    
+    <div class="sidebar desktop-sidebar">
+        <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Управление производством</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Inventory")'">Склад</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Settings")'">Настройки</button>
+        <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
+    </div>
+    <div class="content">
+        <div class="table-container">
+            <h1>Пользователи системы</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Логин</th>                        
+                        <th>Роль</th>
+                        <th>Статус</th>
+                        <th>Действие</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var u in Model)
+                    {
+                        <tr class="@(u.is_active_user ? "" : "blocked")">
+                            <td>@u.login</td>
+                            <td>@u.role_name</td>
+                            <td>
+                                @if (u.is_active_user)
+                                {
+                                    <span class="status ok">Активен</span>
+                                }
+                                else
+                                {
+                                    <span class="status bad">Заблокирован</span>
+                                }
+                            </td>
+                            <td>
+                                <form asp-action="ToggleUser" method="post">
+                                    <input type="hidden" name="id" value="@u.id_user" />
+                                    <button type="submit" class="btn @(u.is_active_user ? "btn-block" : "btn-unblock")">
+                                        @(u.is_active_user ? "Заблокировать" : "Разблокировать")
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+

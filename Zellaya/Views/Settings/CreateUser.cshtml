@@ -1,0 +1,59 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Добавить пользователя";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/create_user_style.css" />
+</head>
+
+<body>
+
+    <div class="sidebar desktop-sidebar">
+        <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Управление производством</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Inventory")'">Склад</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Settings")'">Настройки</button>
+        <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
+    </div>
+
+   
+    <div class="content">
+        <div class="card">
+
+            <h1>Добавить пользователя</h1>
+
+            <form asp-action="CreateUser" method="post">
+
+                <div class="form-group">
+                    <label>Логин</label>
+                    <input type="text" name="login" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input type="password" name="password" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Роль</label>
+                    <select name="role_id" required>
+                        <option value="">Выберите роль</option>
+                        <option value="11">Администратор</option>
+                        <option value="10">Пользователь</option>                       
+                    </select>
+                </div>
+
+                <button type="submit" class="btn">Сохранить</button>
+
+            </form>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+﻿@model List<InventoryBalanceRow>
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Остатки склада";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/css/inventory_balanced.css" />
+</head>
+
+<body>
+    <div class="sidebar desktop-sidebar">
+        <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Управление производством</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Inventory")'">Склад</button>        
+        <button type="button" onclick="location.href='@Url.Action("Index", "Settings")'">Настройки</button>
+        <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
+    </div>
+
+    <!-- content -->
+    <main class="content">
+        <section class="card">
+
+            <header class="head">
+                <div>
+                    <h1>Остатки склада</h1>
+                    <p class="muted">Поиск / фильтр / сортировка</p>
+                </div>
+
+                <div class="actions">
+                    <a class="btn btn-primary" href="@Url.Action("Move", "Inventory")">➕ Приход/Расход</a>                    
+                    <a class="btn btn-secondary" href="@Url.Action("Index", "Inventory")">Назад</a>
+                </div>
+            </header>
+
+            <!-- фильтры -->
+            <div class="filters">
+                <div class="f-item">
+                    <label>Поиск</label>
+                    <input id="searchInput" type="text" placeholder="Название / парт-номер / тип..." />
+                </div>
+
+                <div class="f-item">
+                    <label>Тип компонента</label>
+                    <select id="typeFilter">
+                        <option value="all">Все</option>
+                    </select>
+                </div>
+
+                <div class="f-item">
+                    <label>Остаток</label>
+                    <select id="qtyFilter">
+                        <option value="all">Все</option>
+                        <option value="low">Мало (0–10)</option>
+                        <option value="mid">Средне (11–50)</option>
+                        <option value="high">Много (51+)</option>
+                    </select>
+                </div>
+
+                <div class="f-item">
+                    <label>Сортировка</label>
+                    <select id="sortFilter">
+                        <option value="type">Тип → Название</option>
+                        <option value="name">Название</option>
+                        <option value="qty_desc">Остаток ↓</option>
+                        <option value="qty_asc">Остаток ↑</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- таблица -->
+            <div class="table-wrap">
+                <table id="balancesTable">
+                    <thead>
+                        <tr>
+                            <th>Тип</th>
+                            <th>Название</th>
+                            <th>Парт-номер</th>
+                            <th class="qty">Остаток</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="balancesBody">
+                        @foreach (var row in Model)
+                        {
+                            var pillClass =
+                            row.stock_qty == 0 ? "pill zero" :
+                            row.stock_qty <= 10 ? "pill low" :
+                            row.stock_qty <= 50 ? "pill mid" : "pill high";
+
+                            <tr class="row"
+                                data-type="@row.type_component"
+                                data-name="@row.name"
+                                data-part="@row.part_number"
+                                data-qty="@row.stock_qty">
+
+                                <td>@row.type_component</td>
+                                <td>@row.name</td>
+                                <td>@row.part_number</td>
+                                <td class="qty">
+                                    <span class="@pillClass">@row.stock_qty</span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="emptyBox" class="empty hidden">
+                Ничего не найдено.
+            </div>
+
+        </section>
+    </main>   
+    <script src="~/js/inventory_balamces_scriptt.js"></script>
+</body>
+</html>
+

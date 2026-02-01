@@ -39,9 +39,8 @@
     <div class="sidebar desktop-sidebar">
         <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Управление производством</button>
         <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
-        <button type="button" onclick="location.href='@Url.Action("Index", "Inventory")'">Кладовая</button>
-        <button type="button" onclick="location.href='#'">Калькулятор</button>
-        <button type="button" onclick="location.href='#'">Настройки</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Inventory")'">Склад</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Settings")'">Настройки</button>
         <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
     </div>
 
@@ -70,6 +69,56 @@
                         <th>Номер компонента</th>
                     </tr>
                 </thead>
+                <div class="status-box">
+                    <form method="post" asp-action="ChangeStatus" asp-controller="UserPanel">
+
+                        <input type="hidden" name="id" value="@Model.order_number" />
+
+                        <label><strong>Статус заказа:</strong></label>
+
+                        <select name="status" class="status-select">
+
+                            @if (Model.status_order == "Создан")
+                            {
+                                <option value="Создан" selected>Создан</option>
+                            }
+                            else
+                            {
+                                <option value="Создан">Создан</option>
+                            }
+
+                            @if (Model.status_order == "В работе")
+                            {
+                                <option value="В работе" selected>В работе</option>
+                            }
+                            else
+                            {
+                                <option value="В работе">В работе</option>
+                            }
+
+                            @if (Model.status_order == "Выполнен")
+                            {
+                                <option value="Выполнен" selected>Выполнен</option>
+                            }
+                            else
+                            {
+                                <option value="Выполнен">Выполнен</option>
+                            }
+
+                            @if (Model.status_order == "Закрыт")
+                            {
+                                <option value="Закрыт" selected>Закрыт</option>
+                            }
+                            else
+                            {
+                                <option value="Закрыт">Закрыт</option>
+                            }
+
+                        </select>
+
+                        <button type="submit" class="btn-save">Сохранить</button>
+                    </form>
+                </div>
 
                 <tbody>
                     @if (Model.Items != null && Model.Items.Any())

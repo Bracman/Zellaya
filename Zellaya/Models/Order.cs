@@ -15,6 +15,8 @@ namespace Zellaya.Models
         [DataType(DataType.Date)]
         public DateTime? ReadyDate { get; set; }
 
+        public string status_order {  get; set; }
+
         // плата и её количество
         public int BoardId { get; set; }
         public Board Board { get; set; } = default!;

@@ -265,5 +265,16 @@ namespace Zellaya.Controllers
             return RedirectToAction("Details", new { id = orderId });
         }
 
+        public IActionResult ChangeStatus(string id, string status)
+        {
+            var order = _db.Board_Orders.FirstOrDefault(o => o.order_number == id);
+            if (order == null)
+                return RedirectToAction("Details");
+
+            order.status_order = status;
+            _db.SaveChanges();
+
+            return RedirectToAction("Details");
+        }
     }
 }

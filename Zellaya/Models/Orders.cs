@@ -12,6 +12,7 @@ namespace Zellaya.Models
        public DateTime? CreatedDate { get; set; }
        public DateTime? ReadyDate { get; set; }
        
+      public string status_order { get; set; }
        public int count_board {  get; set; }
 
     }

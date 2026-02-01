@@ -36,9 +36,8 @@
     <div class="sidebar desktop-sidebar">
         <button type="button" onclick="location.href='@Url.Action("Index", "Orders")'">Управление производством</button>
         <button type="button" onclick="location.href='@Url.Action("Index", "Directories")'">Справочники</button>
-        <button type="button" onclick="location.href='@Url.Action("Index", "Inventory")'">Кладовая</button>
-        <button type="button" onclick="location.href='#'">Калькулятор</button>
-        <button type="button" onclick="location.href='#'">Настройки</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Inventory")'">Склад</button>
+        <button type="button" onclick="location.href='@Url.Action("Index", "Settings")'">Настройки</button>
         <button type="button" class="exit" onclick="location.href='@Url.Action("Login", "Account")'">Выход</button>
     </div>
 
@@ -51,6 +50,7 @@
                     <tr>
                         <th data-sort="name">Имя заказа</th>
                         <th data-sort="number">Номер заказа</th>
+                        <th data-sort="number">Статус</th>
                         <th data-sort="date">Дата заказа</th>
                         <th data-sort="ready">Дата готовности</th>
                         <th data-sort="qty">Кол-во</th>
@@ -63,6 +63,7 @@
                             style="cursor:pointer">
                             <td>Заказ @order.id_order</td>
                             <td>@order.num_order</td>
+                            <td>@order.status_order</td>
                             <td>@order.CreatedDate</td>
                             <td>@order.ReadyDate</td>
                             <td>@order.count_board</td>

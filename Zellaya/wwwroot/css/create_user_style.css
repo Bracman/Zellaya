@@ -1,0 +1,104 @@
+﻿body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    display: flex;
+}
+
+/* САЙДБАР */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #2c3e50;
+    padding: 20px 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+    .sidebar h3 {
+        color: white;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .sidebar a {
+        display: block;
+        width: 85%;
+        margin: 14px auto;
+        padding: 12px;
+        text-align: center;
+        background: #34495e;
+        color: white;
+        text-decoration: none;
+        border-radius: 10px;
+        font-size: 16px;
+    }
+
+        .sidebar a:hover {
+            background: #3d5a73;
+        }
+
+    .sidebar .exit {
+        background: #e74c3c;
+    }
+
+/* КОНТЕНТ */
+.content {
+    margin-left: 220px;
+    width: calc(100% - 220px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* КАРТОЧКА */
+.card {
+    background: white;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 400px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2c3e50;
+}
+
+/* ФОРМА */
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+    .btn:hover {
+        background: #1f2d3a;
+    }

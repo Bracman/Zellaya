@@ -12,5 +12,8 @@ namespace Zellaya.Models
         public DateTime date_ready_order{ get; set; }
 
         public string order_number { get; set; }
+
+        public string status_order {  get; set; }
+        public int count_board {  get; set; }
     }
 }

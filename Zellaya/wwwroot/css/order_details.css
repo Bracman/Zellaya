@@ -181,6 +181,29 @@
 .btn-secondary:hover {
     background-color: #7f8c8d;
 }
+/* Статус */
+.status-box {
+    margin-top: 15px;
+    padding: 10px;
+    background: #ecf2f8;
+    border-radius: 8px;
+}
+
+    .status-box select {
+        padding: 6px;
+        margin-left: 10px;
+    }
+
+    .status-box button {
+        padding: 6px 12px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 6px;
+        background: #27ae60;
+        color: white;
+        cursor: pointer;
+    }
+
 
 /* ====== Десктопный сайдбар ====== */
 .desktop-sidebar {

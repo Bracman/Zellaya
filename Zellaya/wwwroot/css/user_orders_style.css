@@ -1,0 +1,133 @@
+﻿body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    display: flex;
+}
+
+.right-sidebar {
+    width: 230px;
+    background: #2c3e50;
+    color: white;
+    height: 100vh;
+    padding: 25px 15px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    box-shadow: -4px 0 12px rgba(0,0,0,0.1);
+}
+
+    .right-sidebar h3 {
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 20px;
+    }
+
+    .right-sidebar a {
+        display: block;
+        background: #34495e;
+        color: white;
+        text-decoration: none;
+        padding: 12px;
+        border-radius: 12px;
+        margin-bottom: 14px;
+        text-align: center;
+        font-size: 15px;
+        transition: 0.2s;
+    }
+
+        .right-sidebar a:hover {
+            background: #3f5d78;
+            transform: translateY(-2px);
+        }
+
+    .right-sidebar .exit {
+        background: #e74c3c;
+    }
+
+
+.content {
+    flex: 1;
+    margin-right: 230px;
+    padding: 50px 40px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.table-box {
+    width: 100%;
+    max-width: 1050px;
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2c3e50;
+    font-size: 26px;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #2c3e50;
+    color: white;
+    padding: 14px;
+    font-size: 15px;
+    text-align: center;
+}
+
+td {
+    padding: 14px;
+    border-bottom: 1px solid #eaeaea;
+    text-align: center;
+    font-size: 14px;
+}
+
+tr {
+    transition: 0.2s;
+}
+
+    tr:hover {
+        background: #eef3f8;
+        transform: scale(1.01);
+    }
+
+
+@media (max-width: 900px) {
+    .right-sidebar {
+        width: 180px;
+    }
+
+    .content {
+        margin-right: 180px;
+        padding: 30px 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        flex-direction: column;
+    }
+
+    .right-sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .content {
+        margin-right: 0;
+    }
+}
