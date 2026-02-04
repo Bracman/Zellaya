@@ -194,6 +194,7 @@ namespace Zellaya.Controllers
                             num_order = reader.GetString(1),
                             CreatedDate = reader.GetDateTime(2),
                             ReadyDate = reader.GetDateTime(3),
+                            status_order = reader.GetString(5),
                             count_board = reader.GetInt32(4)
                         });
                     }
@@ -264,17 +265,17 @@ namespace Zellaya.Controllers
 
             return RedirectToAction("Details", new { id = orderId });
         }
-
+        [HttpPost]
         public IActionResult ChangeStatus(string id, string status)
         {
             var order = _db.Board_Orders.FirstOrDefault(o => o.order_number == id);
             if (order == null)
-                return RedirectToAction("Details");
+                return RedirectToAction("ListOrders");
 
             order.status_order = status;
             _db.SaveChanges();
 
-            return RedirectToAction("Details");
+            return RedirectToAction("ListOrders");
         }
     }
 }
